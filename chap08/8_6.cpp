@@ -1,3 +1,6 @@
+/**
+ * 削除操作も可能にした双方向連結リスト
+ */
 #include <iostream>
 #include <vector>
 #include <string>
@@ -5,13 +8,14 @@
 using namespace std;
 
 
+// 双方向への自己参照構造体
 // 連結リストの各ノードを表す構造体
 struct Node {
     Node *prev, *next;
     string name; // ノードに付随する値
 
     Node(string name_ = "") : prev(NULL), next(NULL), name(name_) {}
-}
+};
 
 // 番兵を表すノードをグローバル領域に置いておく
 Node *nil;
@@ -60,5 +64,39 @@ int main()
     init();
 
     // 作りたいノードの名前の一覧
+    // 最後尾のノード 山本から順に挿入することに注意
+    vector<string> names = {
+        "yamamoto",
+        "watanabe",
+        "ito",
+        "takahashi",
+        "suzuki",
+        "sato"
+    };
+    // 連結リストを作成：各ノードを生成して連結リストの先頭に挿入していく
+    Node *watanabe;
+    for (int i = 0; i < (int)names.size(); ++i) {
+        // ノードを作成する
+        Node *node = new Node(names[i]);
+
+        // 作成したノードを連結リストの先頭に挿入する
+        insert(node);
+
+        // 渡辺ノードを保持しておく
+        if (names[i] == "watanabe") {
+            watanabe = node;
+        }
+    } 
+
+    // 渡辺ノードを削除する
+    cout << "before: ";
+    printList(); // 削除前を出力
+    erase(watanabe);
+    cout << "after: ";
+    printList(); // 削除後を出力
+}
+
+
+
 
 
