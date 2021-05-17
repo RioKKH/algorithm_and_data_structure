@@ -13,12 +13,6 @@ struct Edge
     Edge(int to, long long w) : to(to), w(w) {}
 };
 
-auto for_each = [] (auto first, auto last, auto f)
-{
-    for (auto iter = first; iter != last; ++iter) {
-        f(*iter);
-    }
-};
 
 auto print_value = [] (auto v, auto e)
 { 
