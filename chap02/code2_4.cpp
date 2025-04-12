@@ -1,15 +1,14 @@
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
-//using namespace std;
+// using namespace std;
 
 // 2点 (x1, y1)と(x2, y2)との距離を求める関数
 double calc_dist(double x1, double y1, double x2, double y2) {
-    return std::sqrt((x1 - x2)*(x1 -x2) + (y1 - y2)*(y1 - y2));
+    return std::sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
-int main(int argc, char const* argv[])
-{
+int main(int argc, char const* argv[]) {
     // 入力データを受け取る
     int N;
     std::cin >> N;
@@ -24,6 +23,8 @@ int main(int argc, char const* argv[])
     for (int i = 0; i < N; ++i) {
         for (int j = i + 1; j < N; ++j) {
             // NxN行列の上三角行列から対角成分を除いた範囲について処理
+            // 半分全探索を実施する。より効率的なアルゴリズムとして
+            // 分割統治法(divide-and-conquer method)というアルゴリズムもある。
             // (x[j], y[j])と(x[j], y[j])との距離
             double dist_i_j = calc_dist(x[i], y[i], x[j], y[j]);
 
