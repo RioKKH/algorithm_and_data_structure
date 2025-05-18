@@ -1,8 +1,7 @@
 #include <iostream>
 #include <vector>
 
-int main(int argc, char const* argv[])
-{
+int main(int argc, char const* argv[]) {
     std::vector<long long> F(50);
     F[0] = 0, F[1] = 1;
     for (int N = 2; N < 50; ++N) {
